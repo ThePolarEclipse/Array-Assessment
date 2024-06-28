@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Arrays</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Image Arrays</h1>
+    <form id="assignForm">
+      <input type="email" id="emailInput" placeholder="Enter email address" required>
+      <button type="submit">Assign Image</button>
+    </form>
+    <button id="newImageButton">New Image</button>
+    <div id="currentImage">
+      <h2>Current Image</h2>
+      <img id="randomImage" src="" alt="Random Image">
+    </div>
+    <div id="assignedImages">
+      <h2>Assigned Images</h2>
+      <ul id="imageList"></ul>
+      <button id="clearAllButton">Clear All</button>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

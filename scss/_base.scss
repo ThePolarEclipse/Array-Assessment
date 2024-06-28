@@ -1,0 +1,12 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: $background-color;
+  margin: 0;
+  padding: 20px;
+  @include flex-center;
+  height: 100vh;
+}
+
+h1, h2 {
+  margin-bottom: 20px;
+}

@@ -1,0 +1,15 @@
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  padding: $padding;
+  margin-bottom: $padding;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+}
+
+button {
+  @include button-style($button-bg-color, $button-bg-hover-color);
+}
