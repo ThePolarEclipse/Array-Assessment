@@ -41,9 +41,7 @@ $(document).ready(function() {
     assignedImages[email].push($('#randomImage').attr('src'));
     localStorage.setItem('assignedImages', JSON.stringify(assignedImages));
     
-    $('#emailInput').val('');
     loadAssignedImages();
-    loadRandomImage();
   });
 
   // Reset images for a specific email
