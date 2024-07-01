@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#randomImage').attr('src', apiUrl + '?random=' + new Date().getTime());
   }
 
-  // Load stored images from localStorage
+  // Load stored images from localStorage.
   function loadAssignedImages() {
     const assignedImages = JSON.parse(localStorage.getItem('assignedImages')) || {};
     $('#imageList').empty();
