@@ -6,7 +6,7 @@ $(document).ready(function() {
     $('#randomImage').attr('src', apiUrl + '?random=' + new Date().getTime());
   }
 
-  // Load stored images from localStorage.
+  // Load stored images from localStorage
   function loadAssignedImages() {
     const assignedImages = JSON.parse(localStorage.getItem('assignedImages')) || {};
     $('#imageList').empty();
@@ -29,19 +29,44 @@ $(document).ready(function() {
     }
   }
 
+  // Function to validate email address
+  function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  }
+
   // Assign the current image to an email address
   $('#assignForm').on('submit', function(event) {
     event.preventDefault();
     const email = $('#emailInput').val();
+    const currentImage = $('#randomImage').attr('src');
+    const emailError = $('#emailError');
+
+    // Check for email validation
+    if (!validateEmail(email)) {
+      emailError.text('Please enter a valid email address.');
+      emailError.show();
+      return;
+    } else {
+      emailError.hide();
+    }
+
     const assignedImages = JSON.parse(localStorage.getItem('assignedImages')) || {};
-    
+
     if (!assignedImages[email]) {
       assignedImages[email] = [];
     }
-    assignedImages[email].push($('#randomImage').attr('src'));
-    localStorage.setItem('assignedImages', JSON.stringify(assignedImages));
-    
-    loadAssignedImages();
+
+    // Check if the image is already assigned to this email
+    if (!assignedImages[email].includes(currentImage)) {
+      assignedImages[email].push(currentImage);
+      localStorage.setItem('assignedImages', JSON.stringify(assignedImages));
+      loadAssignedImages();
+      emailError.hide(); 
+    } else {
+      emailError.text('This image is already assigned to this email.');
+      emailError.show();
+    }
   });
 
   // Reset images for a specific email
