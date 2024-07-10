@@ -89,7 +89,5 @@ $(document).ready(function() {
     loadRandomImage();
   });
 
-  // Initial load
-  loadRandomImage();
   loadAssignedImages();
 });
