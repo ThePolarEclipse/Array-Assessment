@@ -3,7 +3,7 @@ $(document).ready(function() {
 
   // Load a new random image
   function loadRandomImage() {
-    const newImageUrl = apiUrl + '?random=' + new Date().getTime();
+    const newImageUrl = `${apiUrl}?${new Date().getTime()}`;
     $('#randomImage').attr('src', newImageUrl);
     localStorage.setItem('currentImage', newImageUrl);
   }
@@ -98,6 +98,11 @@ $(document).ready(function() {
   } else {
     loadRandomImage();
   }
-  loadRandomImage();
+
+  // Handle image load errors and retry
+  $('#randomImage').on('error', function() {
+    loadRandomImage();
+  });
+  
   loadAssignedImages();
 });
