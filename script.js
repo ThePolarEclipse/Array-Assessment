@@ -98,6 +98,6 @@ $(document).ready(function() {
   } else {
     loadRandomImage();
   }
-  
+  loadRandomImage();
   loadAssignedImages();
 });
