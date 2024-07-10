@@ -1,9 +1,10 @@
 $(document).ready(function() {
   const apiUrl = 'https://picsum.photos/400';
+  const defaultImageUrl = 'https://picsum.photos/id/237/400/400'; // Default fallback image
 
   // Load a new random image
   function loadRandomImage() {
-    const newImageUrl = `${apiUrl}?${new Date().getTime()}`;
+    const newImageUrl = apiUrl + '?random=' + new Date().getTime();
     $('#randomImage').attr('src', newImageUrl);
     localStorage.setItem('currentImage', newImageUrl);
   }
@@ -91,18 +92,14 @@ $(document).ready(function() {
     loadRandomImage();
   });
 
-  // Load the saved image or a new random image on first load
+  // Load the saved image or a default fallback image on first load
   const savedImage = localStorage.getItem('currentImage');
   if (savedImage) {
     $('#randomImage').attr('src', savedImage);
   } else {
-    loadRandomImage();
+    $('#randomImage').attr('src', defaultImageUrl);
+    localStorage.setItem('currentImage', defaultImageUrl);
   }
-
-  // Handle image load errors and retry
-  $('#randomImage').on('error', function() {
-    loadRandomImage();
-  });
   
   loadAssignedImages();
 });
