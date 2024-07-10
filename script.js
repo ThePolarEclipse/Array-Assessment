@@ -3,7 +3,9 @@ $(document).ready(function() {
 
   // Load a new random image
   function loadRandomImage() {
-    $('#randomImage').attr('src', apiUrl + '?random=' + new Date().getTime());
+    const newImageUrl = apiUrl + '?random=' + new Date().getTime();
+    $('#randomImage').attr('src', newImageUrl);
+    localStorage.setItem('currentImage', newImageUrl);
   }
 
   // Load stored images from localStorage
@@ -89,5 +91,13 @@ $(document).ready(function() {
     loadRandomImage();
   });
 
+  // Load the saved image or a new random image on first load
+  const savedImage = localStorage.getItem('currentImage');
+  if (savedImage) {
+    $('#randomImage').attr('src', savedImage);
+  } else {
+    loadRandomImage();
+  }
+  
   loadAssignedImages();
 });
